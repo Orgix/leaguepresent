@@ -118,7 +118,6 @@ function createSummonerCard(summonerData) {
   }
   
   const createCard = (details) =>{
-    console.log(details)
     //get all info regarding time
     let time = {
       minutes:Math.floor(details.time.lasted / 60),

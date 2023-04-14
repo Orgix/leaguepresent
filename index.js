@@ -96,7 +96,6 @@ app.get('/matches/:Region/:puuid', async (request, response) =>{
             iter_match = MATCH_ENDPOINT;
             iter_match = iter_match.replace('{matchId}',fetch_match_ids[i])
             match_resp = await makeApiCall(iter_match)
-            //console.log(match_resp)
             let matchDetails ={
               time:{
               started: match_resp.info.gameCreation,
