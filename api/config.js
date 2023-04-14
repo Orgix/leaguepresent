@@ -21,7 +21,10 @@ export const queueTypes={
     430:'Blind Pick',
     400:'Draft Pick',
     440:'5v5 Flex',
-    700:"Summoner's Rift Clash game"
+    700:"Summoner's Rift Clash game",
+    830:"Intro Tutorial",
+    840:"Beginner Co-op",
+    850:"Intermediate Co-op"
 }
 export const config = {
     api:{

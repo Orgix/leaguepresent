@@ -89,11 +89,10 @@ app.get('/matches/:Region/:puuid', async (request, response) =>{
     let matches = [];
     const fetch_match_ids = await makeApiCall(MATCH_IDS_ENDPOINT)
       if(fetch_match_ids.length > 0){
-        console.log(fetch_match_ids)
         let iter_match;
         let match_resp;
         
-        for(let i=0;i<=9;i++){
+        for(let i=0;i<=19;i++){
             iter_match = MATCH_ENDPOINT;
             iter_match = iter_match.replace('{matchId}',fetch_match_ids[i])
             match_resp = await makeApiCall(iter_match)
@@ -133,3 +132,4 @@ const createPartObj = (entries) =>{
 //many summoners have multiple rankings in multiple queues, fix the UI to have all 3 of them presented
 // add parameters to the start/end on the match url. e.g. load first 10 games, load the next 10 with the press of a button
 //fetch summoners spells used, items before returning the object
+//add a method that will be taking the image name for each champion inside the match object in order to use the path at Ddragon
