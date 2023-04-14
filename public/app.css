@@ -165,6 +165,14 @@ body > h1{
   border-color:#e84057;
   background-color:#59343b;
  }
+ .remake{
+    height: 100px;
+    border-radius: 4px;
+    border-left-style: solid;
+    border-left-width: 6px;
+    border-color:#9e9eb1;
+    background-color:#282830;
+ }
  .champion-used{
   width:60px;
   border-radius:5px;

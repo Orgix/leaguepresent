@@ -92,11 +92,11 @@ app.get('/matches/:Region/:puuid', async (request, response) =>{
         let iter_match;
         let match_resp;
         
-        for(let i=0;i<=19;i++){
+        for(let i=0;i<=9;i++){
             iter_match = MATCH_ENDPOINT;
             iter_match = iter_match.replace('{matchId}',fetch_match_ids[i])
             match_resp = await makeApiCall(iter_match)
-            console.log(match_resp)
+            //console.log(match_resp)
             let matchDetails ={
               time:{
               started: match_resp.info.gameCreation,
@@ -105,7 +105,8 @@ app.get('/matches/:Region/:puuid', async (request, response) =>{
             },
             place:match_resp.info.gameMode, 
             summoners: createPartObj(match_resp.info.participants),
-            queue: queueTypes[match_resp.info.queueId]
+            queue: queueTypes[match_resp.info.queueId],
+            isRemake: match_resp.info.gameDuration < 300 
           } 
           matches.push(matchDetails);
         }
@@ -122,12 +123,22 @@ app.get('/matches/:Region/:puuid', async (request, response) =>{
   
 })
 const createPartObj = (entries) =>{
-  
   return entries.map((entry)=>{
     return ({win : entry.win, team: entry.teamId,name: entry.summonerName, champion: entry.championName,
-    cs:entry.totalMinionsKilled,kills: entry.kills, deaths: entry.deaths, assists: entry.assists, kda: entry.deaths > 0 ? parseFloat(((entry.kills+entry.assists)/entry.deaths).toFixed(2)) : "Perfect"})
+    cs:entry.totalMinionsKilled,kills: entry.kills, deaths: entry.deaths, assists: entry.assists, kda: determineKDA(entry.kills,entry.deaths,entry.assists)})
   })
+}
+
+const determineKDA = (kills,deaths,assists) =>{
   
+  if(kills === 0 && deaths === 0 && assists === 0){
+    return 0;
+  } 
+  else if(deaths === 0 && (kills > 0 || assists > 0)){
+    return "Perfect"
+  } else{
+    return parseFloat(((kills+assists)/deaths).toFixed(2))
+  }
 }
 //many summoners have multiple rankings in multiple queues, fix the UI to have all 3 of them presented
 // add parameters to the start/end on the match url. e.g. load first 10 games, load the next 10 with the press of a button

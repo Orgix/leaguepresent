@@ -118,6 +118,7 @@ function createSummonerCard(summonerData) {
   }
   
   const createCard = (details) =>{
+    console.log(details)
     //get all info regarding time
     let time = {
       minutes:Math.floor(details.time.lasted / 60),
@@ -142,16 +143,17 @@ function createSummonerCard(summonerData) {
        break;
       }
     }
+    const outcome = stringCapitalize(determineColor(details.isRemake, activeSummoner.won))
     const first_team = details.summoners.filter(summoner =>summoner.team === 100)
     const second_team = details.summoners.filter(summoner =>summoner.team === 200)
     let card_result = `
-    <div class="match-card ${activeSummoner.won ? "victory" : "defeat"}">
+    <div class="match-card ${determineColor(details.isRemake, activeSummoner.won)}">
             <div class="match-header">
                 <div class="imgcont">
                     <img src="champion/${activeSummoner.champion}.png" alt="${activeSummoner.champion}" class="champion-used">
                 </div>
                 <div class="rest">
-                    <div class="match-result">${activeSummoner.won ? "Victory":"Defeat"}</div>
+                    <div class="match-result">${outcome}</div>
                     <div class="match-duration">${time.minutes}m ${time.seconds}s</div>
                     <div class="match-type-container">
                         <span class="match-type">${details.queue}</span>
@@ -233,7 +235,7 @@ function createSummonerCard(summonerData) {
     }
   }
 
-  function formatDateTime(dateTime) {
+  const formatDateTime = (dateTime) => {
     const options = {
       weekday: 'short',
       year: 'numeric',
@@ -246,4 +248,11 @@ function createSummonerCard(summonerData) {
     return formatter.format(dateTime);
   } 
 
-  //
+  const determineColor = (remake, outcome) =>{
+    if(remake) return "remake"
+    return outcome ? "victory":"defeat"
+  }
+
+  const stringCapitalize = (matchOutcome)=>{
+    return matchOutcome.charAt(0).toUpperCase() + matchOutcome.slice(1)
+  }
