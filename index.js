@@ -130,6 +130,4 @@ const createPartObj = (entries) =>{
   })
   
 }
-//button to fetch matches based on the puuid fetch 10 for now DONE 
-//make getMatchesRoute DONE
-// present all queues in ranked if there are available. 
+//many summoners have multiple rankings in multiple queues, fix the UI to have all 3 of them presented
