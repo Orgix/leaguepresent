@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="app.css">
+    <title>League Presenter</title>
+</head>
+
+<body>
+    <h1>League Present Champion Cards</h1>
+
+    <form id="sumSearch">
+        <div class="row">
+            <span>
+                <select name="regionList" class="" id="regList">
+                    <option value="reg" selected>Region</option>
+                    <option value="eun1">Europe Nordic & East</option>
+                    <option value="euw1">Europe West</option>
+                    <option value="na1">North America</option>
+                    <option value="br1">Brazil</option>
+                    <option value="jp1">Japan</option>
+                    <option value="kr">Korea</option>
+                    <option value="la1">LAS</option>
+                    <option value="la2">LAN</option>
+                    <option value="oc1">Oceania</option>
+                    <option value="tr1">Turkey</option>
+                    <option value="ru">Russia</option>
+                    <option value="ph2">Philippines</option>
+                    <option value="sg2">Singapore</option>
+                    <option value="th2">Thailand</option>
+                    <option value="tw2">Taiwan</option>
+                    <option value="vn2">Vietnam</option>
+                </select><input type="text" name="summonerName" class="datatext" id="sumName" autocomplete="off">
+            </span>
+
+        </div>
+    </form>
+    <div id="result"></div>
+    <div class="btn-container">
+        <button class="fetch-matches" id="match" role="button">View Match History</button>
+        <button class="fetch-matches" id="hideMatches" role="button">Hide Match History</button>
+    </div>
+    <div class="matches-container" id="match-cont"></div>
+    <script src="app.js"></script>
+</body>
+
+</html>

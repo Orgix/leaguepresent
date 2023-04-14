@@ -1,0 +1,293 @@
+html{
+    font-size:100%;
+    box-sizing: border-box;
+}
+
+body{
+    margin:0;
+    padding:0;
+    background-color: #31313C;
+}
+
+.row > span{
+    position:relative;
+    display:flex;
+    justify-content: center;
+    width:100%;
+    
+}
+
+#regList{
+    -webkit-appearance: none;
+    -moz-appearance: none;
+    appearance: none;
+    padding: 10px 38px 10px 16px;
+    background-color:rgba(247, 243, 242, 0.76);
+    transition: border-color .1s ease-in-out,box-shadow .1s ease-in-out;
+    border: 1px solid #ddd;
+    border-radius: 3px;
+    border-right:0px;
+    text-align: center;
+}
+select + input{
+    border:1px solid #ddd;
+    border-left:0px;
+}
+
+select +input:focus{
+    outline:none;
+}
+
+select::-ms-expand {
+    display:none;
+}
+
+body > h1{
+    font-size:2rem;
+    font-weight: 500;
+    text-align: center;
+    color:white;
+}
+
+.summoner-card {
+    background-color: #222;
+    border: 1px solid #333;
+    border-radius: 5px;
+    color:white;
+    box-shadow: 0px 2px 2px rgba(0,0,0,0.1);
+    padding: 20px;
+    text-align: center;
+    width: 400px;
+    margin: 20px auto;
+  }
+  
+  .profile-icon {
+    width: 80px;
+    height: 80px;
+    border-radius: 50%;
+    margin-bottom: 10px;
+  }
+  
+  .summoner-name {
+    font-size: 24px;
+    margin-bottom: 10px;
+  }
+  
+  .summoner-level {
+    font-size: 16px;
+    margin-bottom: 20px;
+  }
+  
+  .rank-info {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-top: 10px;
+  }
+  
+  .rank-img {
+    width: 50px;
+    height: 50px;
+    margin-right: 10px;
+  }
+  
+  .rank-text {
+    font-size: 16px;
+    margin-right: 10px;
+  }
+  
+  .league-points {
+    font-size: 16px;
+    margin-right: 10px;
+  }
+  
+  .win-loss {
+    font-size: 16px;
+  }
+
+  .queue-type{
+    font-size:14px;
+  }
+  .matches-container{
+    width:90%;
+    display:flex;
+    flex-direction: column;
+    justify-content: center;
+    margin: 0 auto;
+    padding:20px 15px 20px 15px;
+  }
+
+  .btn-container{
+    width:80%;
+    display:none;
+    justify-content: center;
+    margin: 0 auto;
+    padding: 15px 21px;
+  }
+  .fetch-matches {
+    padding: 15px 21px;
+    font-family: -apple-system, BlinkMacSystemFont, 'Roboto', sans-serif;
+    border-radius: 6px;
+    border: none;
+    background: #31313C;
+    box-shadow: 0px 0.5px 1px rgba(0, 0, 0, 0.1), inset 0px 0.5px 0.5px rgba(255, 255, 255, 0.5), 0px 0px 0px 0.5px rgba(0, 0, 0, 0.12);
+    color: #DFDEDF;
+    user-select: none;
+    -webkit-user-select: none;
+    touch-action: manipulation;
+    transition: transform 0.25s ease-in, margin-top 0.15s ease-in;
+  }
+  
+  .fetch-matches:focus {
+    box-shadow: inset 0px 0.8px 0px -0.25px rgba(255, 255, 255, 0.2), 0px 0.5px 1px rgba(0, 0, 0, 0.1), 0px 0px 0px 3.5px rgba(58, 108, 217, 0.5);
+    outline: 0;
+  }
+
+  .fetch-matches:hover{
+    transform: scale(1.13);
+    pointer-events:visibleStroke;
+  }
+
+
+ .victory{
+  height: 100px;
+  border-radius: 4px;
+  border-left-style: solid;
+  border-left-width: 6px;
+  border-color:#5383e8;
+  background-color:#28344e;
+ }
+ .defeat{
+  height: 100px;
+  border-radius: 4px;
+  border-left-style: solid;
+  border-left-width: 6px;
+  border-color:#e84057;
+  background-color:#59343b;
+ }
+ .champion-used{
+  width:60px;
+  border-radius:5px;
+ }
+
+  .match-card {
+    position:relative;
+    display:flex;
+    flex-direction: row;
+    width: 80%;
+    margin: 0 auto;
+    padding: 15px 25px 15px 15px;
+    border-radius: 5px;
+    margin-bottom: 10px; 
+    display: flex; 
+    justify-content: space-between; 
+  }
+  
+  .match-header {
+    display: flex;
+    position:relative;
+    flex-direction: row;
+    align-items: center;
+  }
+  .imgcont{
+    padding-right:20px;
+  }
+  .match-duration,
+  .match-timestamp,
+  .match-result {
+    color: #9e9ecf; /* Set desired text color */
+    font-weight:500;
+    padding-bottom:5px;
+  }
+  .match-
+  .match-timestamp{
+    padding:10px 15px;
+  }
+  .match-summary {
+    
+    display: flex;
+    align-items: center;
+    position:relative;
+    margin-top: 10px 0 10px 0;
+  }
+   
+   .match-type{
+    color:white;
+    margin-right:3px;
+    font-weight: 600;
+   }
+
+   .timestamp{
+    color:white;
+    margin-left:3px;
+   }
+   .middle{
+    color:white;
+   }
+  .summoner-icons img {
+    width: 30px; /* Set desired size for champion icons */
+    height: 30px;
+    border-radius: 50%;
+    margin-right: 5px;
+  }
+  .participant-icon{
+    width:16px;
+    height:16px;
+    margin-right:5px;
+    border-radius: 5px;
+  }
+  .summoner-line-ups{
+    display:flex;
+    flex-direction: row;
+  }
+  .summoner-line-ups ul{
+    list-style-type: none;
+  }
+  .summoner-line-ups ul li{
+    display:flex;
+    align-items: center;
+    width:120px;
+  }
+  .name{
+    display:inline-block;
+  }
+ .name > a{
+  text-decoration: none;
+ }
+ 
+  .summonerlink{
+    font-size:12px;
+    margin:auto 0;
+    color:#9e9eb1;
+    white-space: nowrap;
+  }
+  .active-summoner{
+    color: white;
+  }
+  .score{
+    width:10%;
+    display:flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+  }
+  .kda {
+    display: flex;
+    align-items: center;
+    margin-left: 10px;
+  }
+  
+  .kda div {
+    margin-right: 5px;
+  }
+  
+  .kills,
+  .deaths,
+  .assists,
+  .kda {
+    color: #FFF; /* Set desired text color */
+  }
+
+
+  
+  
