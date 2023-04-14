@@ -131,3 +131,5 @@ const createPartObj = (entries) =>{
   
 }
 //many summoners have multiple rankings in multiple queues, fix the UI to have all 3 of them presented
+// add parameters to the start/end on the match url. e.g. load first 10 games, load the next 10 with the press of a button
+//fetch summoners spells used, items before returning the object
