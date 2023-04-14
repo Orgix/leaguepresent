@@ -133,4 +133,3 @@ const createPartObj = (entries) =>{
 //button to fetch matches based on the puuid fetch 10 for now DONE 
 //make getMatchesRoute DONE
 // present all queues in ranked if there are available. 
-//present matches in a nice way in front ALMOST DONE
