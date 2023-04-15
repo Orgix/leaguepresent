@@ -8,7 +8,8 @@ const app = express();
 const port = 3000;
 const API_KEY = config.api.key;
 const status = {
-  message:""
+  message:"",
+  code:""
 }
 
 // Define the API endpoint URL for retrieving ranked data
@@ -30,10 +31,12 @@ app.get('/summoner/:Region/:SummonerName', async(request, response)=>{
   //-------------------
   //get Summoner information
   const fetchResponse = await makeApiCall(SUMMONER_ENDPOINT)
+  console.log(fetchResponse)
   //if the response had some reason to be incorrect, the status property should exist withing the response object
   //return the status message
   if(fetchResponse["status"]){
     status.message = fetchResponse["status"]["message"];
+    status.code = "summoner"
     response.json(status);
   } 
   else{
@@ -76,7 +79,9 @@ app.get('/summoner/:Region/:SummonerName', async(request, response)=>{
   }
   catch(error){
     console.log(error);
-    response.status(500).json({error: 'Internal Server Error'});
+    status.message = error;
+    status.code = "server"
+    response.status(500).json(status);
   }
 })
 
@@ -88,6 +93,7 @@ app.get('/matches/:Region/:puuid', async (request, response) =>{
   try{
     let matches = [];
     const fetch_match_ids = await makeApiCall(MATCH_IDS_ENDPOINT)
+    console.log(fetch_match_ids)
       if(fetch_match_ids.length > 0){
         let iter_match;
         let match_resp;
@@ -111,8 +117,10 @@ app.get('/matches/:Region/:puuid', async (request, response) =>{
         }
       }
       else{
+        console.log("No matches")
         matches= "No matches Found"
       }
+      console.log(matches)
       response.json(matches)
   }
   catch(error){
@@ -143,3 +151,4 @@ const determineKDA = (kills,deaths,assists) =>{
 // add parameters to the start/end on the match url. e.g. load first 10 games, load the next 10 with the press of a button
 //fetch summoners spells used, items before returning the object
 //add a method that will be taking the image name for each champion inside the match object in order to use the path at Ddragon
+//after testing some edge cases, another change to happen is to make sure that user knows if an associated account has no games(presented)

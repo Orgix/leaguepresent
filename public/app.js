@@ -32,7 +32,7 @@ document.getElementById("sumName").addEventListener("keydown",async (ev)=>{
         region = formData.get("regionList");
         const data = await getSummoner(summonerName,region);
         if(data.message) {
-            console.log(data.message)
+            console.log(data) // change it and present in case of code:"summoner"
         }
         else{
             
@@ -93,7 +93,12 @@ function createSummonerCard(summonerData) {
       try{
           let fetch_matches = await fetch(`/matches/${Region}/${puuid}`);
           let match_response = await fetch_matches.json();
-          presentMatchHistory(match_response);
+          if(match_response !== "No matches Found"){
+            presentMatchHistory(match_response);
+          }
+          else{
+            alert("no matches")
+          }
           presented = true;
       }
       catch(error){
