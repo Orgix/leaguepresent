@@ -1,3 +1,5 @@
+import {foo} from './helper.js'
+
 let data;
 let divRes = document.getElementById("result");
 let match_container = document.getElementById("match-cont");
@@ -11,7 +13,7 @@ async function getSummoner(summonerName,Region){
 }
 
 
-
+foo("o")
 document.getElementById("sumName").addEventListener("keydown",async (ev)=>{
     
     if(ev.key === "Enter"){
@@ -168,11 +170,11 @@ function createSummonerCard(summonerData) {
             </div>
             <div class="score">
                 <div class="kda">
-                    <div class="kills">${activeSummoner.score.kills} /</div>
-                    <div class="deaths">${activeSummoner.score.deaths} /</div>
-                    <div class="assists">${activeSummoner.score.assists}</div>
+                    <span class="kills">${activeSummoner.score.kills}</span>
+                    <span class="deaths">${activeSummoner.score.deaths}</span>
+                    <span class="assists">${activeSummoner.score.assists}</span>
                 </div>
-                <div class="kda">${activeSummoner.score.kda} KDA</div>
+                <span class="kda">${activeSummoner.score.kda} KDA</span>
             </div>
             <div class="match-summary">
               <div class="summoner-line-ups"><ul>`;

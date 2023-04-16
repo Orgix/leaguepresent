@@ -295,7 +295,18 @@ body > h1{
   .kda {
     color: #FFF; /* Set desired text color */
   }
+ .deaths::before{
+  content: " /";
+ }
+ .deaths::after{
+  content:"/ ";
+ }
 
-
-  
-  
+@media(width < 1100px){
+  .kills,
+  .deaths,
+  .assists,
+  .kda {
+    font-size:10px;
+  }
+}
