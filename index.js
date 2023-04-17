@@ -102,6 +102,7 @@ app.get('/matches/:Region/:puuid', async (request, response) =>{
             iter_match = MATCH_ENDPOINT;
             iter_match = iter_match.replace('{matchId}',fetch_match_ids[i])
             match_resp = await makeApiCall(iter_match)
+
             let matchDetails ={
               time:{
               started: match_resp.info.gameCreation,
@@ -131,6 +132,7 @@ app.get('/matches/:Region/:puuid', async (request, response) =>{
 })
 const createPartObj = (entries) =>{
   return entries.map((entry)=>{
+    console.log(entry)
     return ({win : entry.win, team: entry.teamId,name: entry.summonerName, champion: entry.championName,
     cs:entry.totalMinionsKilled,kills: entry.kills, deaths: entry.deaths, assists: entry.assists, kda: determineKDA(entry.kills,entry.deaths,entry.assists)})
   })
