@@ -65,10 +65,11 @@ app.get('/summoner/:Region/:SummonerName', async(request, response)=>{
       //---------------------
       else{
         //Update rank field with an array. Map loops through each array entry and keeps certain fields
-        sumObj.rank = fetch_ranked_response.map(entry=>
-        ({TYPE: entry.queueType, TIER : entry.tier, 
-          RANK: entry.rank, POINTS: entry.leaguePoints, 
-          WINS:entry.wins, LOSSES: entry.losses}))
+            const filteredResponse = fetch_ranked_response.filter(entry => entry.queueType == "RANKED_FLEX_SR" || entry.queueType == "RANKED_SOLO_5x5")
+            sumObj.rank = filteredResponse.map(entry=>
+              ({TYPE: entry.queueType, TIER : entry.tier, 
+                  RANK: entry.rank, POINTS: entry.leaguePoints, 
+                  WINS:entry.wins, LOSSES: entry.losses}))
       }
 
       
