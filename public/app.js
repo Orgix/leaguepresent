@@ -33,6 +33,7 @@ document.getElementById("sumName").addEventListener("keydown",async (ev)=>{
         summonerName = encodeURIComponent(formData.get("summonerName"))
         region = formData.get("regionList");
         const data = await getSummoner(summonerName,region);
+        console.log(data)
         if(data.message) {
             console.log(data) // change it and present in case of code:"summoner"
         }
@@ -129,7 +130,7 @@ function createSummonerCard(summonerData) {
     let time = {
       minutes:Math.floor(details.time.lasted / 60),
       seconds:details.time.lasted  % 60,
-      ago: getTimeAgo(parseInt(details.time.started)),
+      ago: getTimeAgo(parseInt(details.time.ended)),
       started: formatDateTime(new Date(details.time.started + details.time.lasted * 1000))
     };
     //get activeSummonerName
@@ -138,6 +139,7 @@ function createSummonerCard(summonerData) {
     for(var summoner of summoners){
       //when you find active summoner, keep info.
       if(summoner.name === activeSummoner.name){
+        console.log(summoner.items)
        activeSummoner["champion"] = summoner.champion;
        activeSummoner["won"] = summoner.win;
        activeSummoner["score"] = {

@@ -93,7 +93,6 @@ app.get('/matches/:Region/:puuid', async (request, response) =>{
   try{
     let matches = [];
     const fetch_match_ids = await makeApiCall(MATCH_IDS_ENDPOINT)
-    console.log(fetch_match_ids)
       if(fetch_match_ids.length > 0){
         let iter_match;
         let match_resp;
@@ -132,9 +131,11 @@ app.get('/matches/:Region/:puuid', async (request, response) =>{
 })
 const createPartObj = (entries) =>{
   return entries.map((entry)=>{
-    console.log(entry)
+    
     return ({win : entry.win, team: entry.teamId,name: entry.summonerName, champion: entry.championName,
-    cs:entry.totalMinionsKilled,kills: entry.kills, deaths: entry.deaths, assists: entry.assists, kda: determineKDA(entry.kills,entry.deaths,entry.assists)})
+    cs:entry.totalMinionsKilled,kills: entry.kills, deaths: entry.deaths, assists: entry.assists, kda: determineKDA(entry.kills,entry.deaths,entry.assists),
+    items:[entry.item0,entry.item1,entry.item2,entry.item3,entry.item4,entry.item5]
+  })
   })
 }
 
