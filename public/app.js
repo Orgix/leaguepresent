@@ -57,33 +57,153 @@ document.getElementById("sumName").addEventListener("keydown",async (ev)=>{
     
      
 })
+/**<div class="summoner-card">
+            <h2 class="summoner-name">JUJULINOS PRIME</h2>
+            <div class="summoner">
+                <img src="http://ddragon.leagueoflegends.com/cdn/13.7.1/img/profileicon/53.png" alt="JUJULINOS PRIME" class="profile-icon">
+                <div class="summoner-level"><span>690</span></div>
+            </div>
+            <div class="rank-info-row">
+                <div class="rank-info-col">
+                    <div class="ranked-icon">
+                        <img src="rankedIcons/CHALLENGER.png" class="rank-icon">
+                    </div>
+                    <div class="ranked-details">
+                        <span class="queue-type">RANKED SOLO</span>
+                        <span class="rank-text">DIAMOND IV</span>
+                        <span class="league-points">69 LP</span>
+                        <span class="win-loss">69W 9L</span>
+                    </div>
+                </div>
+                <div class="rank-info-col">
+                    <div class="ranked-icon">
+                        <img src="rankedIcons/GRANDMASTER.png" class="rank-icon">
+                    </div>
+                    <div class="ranked-details">
+                        <span class="queue-type">5v5 FLEX</span>
+                        <span class="rank-text">DIAMOND I</span>
+                        <span class="league-points">12 LP</span>
+                        <span class="win-loss">69W 19L</span>
+                    </div>
+                </div>
+            </div>
+        </div> 
 
+
+        <div class="rank-info-col"> 
+      <div class="ranked-details">
+        <span class="queue-type">Ranked Solo</span>
+        <span class="rank-text">Unranked</span>
+      </div>
+     </div>
+//*/
 
 
 function createSummonerCard(summonerData) {
-    let rankImg = '';
-  
-    if (typeof(summonerData.rank) !== "string") {
-      rankImg = `<img src="rankedIcons/${summonerData.rank[0].TIER}.png" class="rank-img">`;
-    }
-  
-    let cardTemplate = `
+  let flexPresented = false;
+  let soloPresented = false;
+  const dict = {
+    RANKED_SOLO_5x5:"Ranked Solo",
+    RANKED_FLEX_SR :"Ranked Flex"
+  }
+  let cardTemplate = `
       <div class="summoner-card">
-        <img src="http://ddragon.leagueoflegends.com/cdn/13.7.1/img/profileicon/${summonerData.profileIcon}.png" alt="${summonerData.name}'s Profile Icon" class="profile-icon">
         <h2 class="summoner-name">${summonerData.name}</h2>
-        <div class="summoner-level">Level ${summonerData.level}</div>`;
-
-        cardTemplate += typeof(summonerData.rank) !== "string"? 
-        `<div class="rank-info">
-          ${rankImg}
-          <div class="rank-text">${summonerData.rank[0].TIER} ${summonerData.rank[0].RANK}</div>
-          <div class="league-points">${summonerData.rank[0].POINTS} LP</div>
-          <div class="win-loss">${summonerData.rank[0].WINS}W ${summonerData.rank[0].LOSSES}L</div>
+        <div class="summoner">
+              <img src="http://ddragon.leagueoflegends.com/cdn/13.7.1/img/profileicon/${summonerData.profileIcon}.png" alt="${summonerData.name}" class="profile-icon">
+              <div class="summoner-level"><span>${summonerData.level}</span></div>
         </div>
-        <div class="queue-type">${summonerData.rank[0].TYPE}</div>`
-        :
-        `<div class="rank-text">Unranked</div>`
-        cardTemplate += `</div>`;
+        <div class="rank-info-row">`;
+  //if summoner is unranked in all queues, rank property will be string
+  if(typeof(summonerData.rank) !== "string"){
+    console.log(summonerData.rank)
+    for(var queue of summonerData.rank){
+      console.log(queue.TYPE)
+      if(queue.TYPE === "RANKED_SOLO_5x5") {
+        soloPresented = true;
+      }else{
+        flexPresented =  true
+      } 
+      cardTemplate +=`
+      <div class="rank-info-col">
+        <div class="ranked-icon">
+            <img src="rankedIcons/${queue.TIER}.png" class="rank-icon">
+        </div>
+        <div class="ranked-details">
+            <span class="queue-type">${dict[queue.TYPE]}</span>
+            <span class="rank-text">${queue.TIER} ${queue.RANK}</span>
+            <span class="league-points">${queue.POINTS} LP</span>
+            <span class="win-loss">${queue.WINS}W ${queue.LOSSES}L</span>
+        </div>
+      </div>`
+    }
+    console.log(flexPresented)
+    console.log(soloPresented)
+    //flex is unranked
+    if(!flexPresented){
+      flexPresented = true
+      console.log("hi flex")
+      cardTemplate += `
+      <div class="rank-info-col">
+      <div class="ranked-icon">
+      <div class="rank-icon"></div>
+  </div>
+                    <div class="ranked-details">
+                        <span class="queue-type">Ranked Flex</span>
+                        <span class="rank-text">UNRANKED</span>
+                        <span class="league-points">Play more games</span>
+                        <span class="win-loss">to unlock</span>
+                    </div>
+                </div>
+      `
+    }//solo is unranked
+    else if(!soloPresented){
+      console.log("hi solo")
+      soloPresented = true;
+      cardTemplate += `
+      <div class="rank-info-col">
+      <div class="ranked-icon">
+      <div class="rank-icon"></div>
+  </div>
+                    <div class="ranked-details">
+                        <span class="queue-type">Ranked Solo</span>
+                        <span class="rank-text">UNRANKED</span>
+                        <span class="league-points">Play more games</span>
+                        <span class="win-loss">to unlock</span>
+                    </div>
+                </div>
+      `
+    }
+    //if both are ranked, the foor loop will have rendered them to the DOM
+  } 
+  else{
+    //both are empty
+    cardTemplate += `
+    <div class="rank-info-col">
+    <div class="ranked-icon">
+        <div class="rank-icon"></div>
+    </div>
+    <div class="ranked-details">
+        <span class="queue-type">Ranked Solo</span>
+        <span class="rank-text">UNRANKED</span>
+        <span class="league-points">Play more games</span>
+        <span class="win-loss">to unlock</span>
+    </div>
+</div>
+<div class="rank-info-col">
+<div class="ranked-icon">
+        <div class="rank-icon"></div>
+    </div>
+<div class="ranked-details">
+    <span class="queue-type">Ranked Flex</span>
+    <span class="rank-text">UNRANKED</span>
+    <span class="league-points">Play more games</span>
+    <span class="win-loss">to unlock</span>
+</div>
+</div>
+      `
+  }
+    cardTemplate += `</div></div>`
     return cardTemplate;
   }
   

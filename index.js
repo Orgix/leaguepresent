@@ -31,7 +31,6 @@ app.get('/summoner/:Region/:SummonerName', async(request, response)=>{
   //-------------------
   //get Summoner information
   const fetchResponse = await makeApiCall(SUMMONER_ENDPOINT)
-  console.log(fetchResponse)
   //if the response had some reason to be incorrect, the status property should exist withing the response object
   //return the status message
   if(fetchResponse["status"]){

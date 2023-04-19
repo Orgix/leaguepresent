@@ -120,13 +120,16 @@ body > h1{
     background-color: #333;
     border-radius: 50%;
     margin-left: 2px;
+    padding:2px;
   }
   .rank-img {
     width: 50px;
     height: 50px;
     margin-right: 10px;
   }
-  
+  .unranked{
+    align-content:flex-start;
+  }
   .rank-text {
     font-size: 16px;
     margin-right: 10px;
