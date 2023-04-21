@@ -52,52 +52,8 @@ document.getElementById("sumName").addEventListener("keydown",async (ev)=>{
         else{
             alert("Summoner Name can't be empty")
         }  
-    }
-    
-    
-     
+    }   
 })
-/**<div class="summoner-card">
-            <h2 class="summoner-name">JUJULINOS PRIME</h2>
-            <div class="summoner">
-                <img src="http://ddragon.leagueoflegends.com/cdn/13.7.1/img/profileicon/53.png" alt="JUJULINOS PRIME" class="profile-icon">
-                <div class="summoner-level"><span>690</span></div>
-            </div>
-            <div class="rank-info-row">
-                <div class="rank-info-col">
-                    <div class="ranked-icon">
-                        <img src="rankedIcons/CHALLENGER.png" class="rank-icon">
-                    </div>
-                    <div class="ranked-details">
-                        <span class="queue-type">RANKED SOLO</span>
-                        <span class="rank-text">DIAMOND IV</span>
-                        <span class="league-points">69 LP</span>
-                        <span class="win-loss">69W 9L</span>
-                    </div>
-                </div>
-                <div class="rank-info-col">
-                    <div class="ranked-icon">
-                        <img src="rankedIcons/GRANDMASTER.png" class="rank-icon">
-                    </div>
-                    <div class="ranked-details">
-                        <span class="queue-type">5v5 FLEX</span>
-                        <span class="rank-text">DIAMOND I</span>
-                        <span class="league-points">12 LP</span>
-                        <span class="win-loss">69W 19L</span>
-                    </div>
-                </div>
-            </div>
-        </div> 
-
-
-        <div class="rank-info-col"> 
-      <div class="ranked-details">
-        <span class="queue-type">Ranked Solo</span>
-        <span class="rank-text">Unranked</span>
-      </div>
-     </div>
-//*/
-
 
 function createSummonerCard(summonerData) {
   let flexPresented = false;
@@ -116,9 +72,7 @@ function createSummonerCard(summonerData) {
         <div class="rank-info-row">`;
   //if summoner is unranked in all queues, rank property will be string
   if(typeof(summonerData.rank) !== "string"){
-    console.log(summonerData.rank)
     for(var queue of summonerData.rank){
-      console.log(queue.TYPE)
       if(queue.TYPE === "RANKED_SOLO_5x5") {
         soloPresented = true;
       }else{
@@ -137,12 +91,9 @@ function createSummonerCard(summonerData) {
         </div>
       </div>`
     }
-    console.log(flexPresented)
-    console.log(soloPresented)
     //flex is unranked
     if(!flexPresented){
       flexPresented = true
-      console.log("hi flex")
       cardTemplate += `
       <div class="rank-info-col">
       <div class="ranked-icon">
@@ -158,7 +109,6 @@ function createSummonerCard(summonerData) {
       `
     }//solo is unranked
     else if(!soloPresented){
-      console.log("hi solo")
       soloPresented = true;
       cardTemplate += `
       <div class="rank-info-col">
