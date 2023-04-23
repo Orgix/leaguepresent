@@ -98,10 +98,10 @@ app.get('/matches/:Region/:puuid', async (request, response) =>{
         let match_resp;
         
         for(let i=0;i<=9;i++){
+          
             iter_match = MATCH_ENDPOINT;
             iter_match = iter_match.replace('{matchId}',fetch_match_ids[i])
             match_resp = await makeApiCall(iter_match)
-
             let matchDetails ={
               time:{
               started: match_resp.info.gameCreation,
@@ -120,7 +120,6 @@ app.get('/matches/:Region/:puuid', async (request, response) =>{
         console.log("No matches")
         matches= "No matches Found"
       }
-      console.log(matches)
       response.json(matches)
   }
   catch(error){
@@ -131,10 +130,9 @@ app.get('/matches/:Region/:puuid', async (request, response) =>{
 })
 const createPartObj = (entries) =>{
   return entries.map((entry)=>{
-    
     return ({win : entry.win, team: entry.teamId,name: entry.summonerName, champion: entry.championName,
     cs:entry.totalMinionsKilled,kills: entry.kills, deaths: entry.deaths, assists: entry.assists, kda: determineKDA(entry.kills,entry.deaths,entry.assists),
-    items:[entry.item0,entry.item1,entry.item2,entry.item3,entry.item4,entry.item5]
+    items:[entry.item0,entry.item1,entry.item2,entry.item3,entry.item4,entry.item5,entry.item6]
   })
   })
 }

@@ -31,17 +31,10 @@ document.getElementById("sumName").addEventListener("keydown",async (ev)=>{
         summonerName = encodeURIComponent(formData.get("summonerName"))
         region = formData.get("regionList");
         const data = await getSummoner(summonerName,region);
-        console.log(data)
         if(data.message) {
             console.log(data) // change it and present in case of code:"summoner"
         }
         else{
-            
-            let summonerId= data.name;
-            let SummonerLevel = data.SummonerLevel;
-            //divRes.innerHTML = Object.keys(data).length > 0 ? 
-            //JSON.stringify(data,null, 2) : 'Currently Unranked';
-            //createImageElem(data);
             divRes.innerHTML = createSummonerCard(data)
             btnContainer.style.display = "flex";
         }
@@ -207,7 +200,6 @@ function createSummonerCard(summonerData) {
     for(var summoner of summoners){
       //when you find active summoner, keep info.
       if(summoner.name === activeSummoner.name){
-        console.log(summoner.items)
        activeSummoner["champion"] = summoner.champion;
        activeSummoner["won"] = summoner.win;
        activeSummoner["score"] = {
@@ -215,7 +207,9 @@ function createSummonerCard(summonerData) {
         deaths: summoner.deaths,
         assists:summoner.assists,
         kda: summoner.kda
-       }//in case summoner is found before the end of for loop, break;
+       }
+       activeSummoner["items"] = summoner.items;
+       //in case summoner is found before the end of for loop, break;
        break;
       }
     }
@@ -245,6 +239,23 @@ function createSummonerCard(summonerData) {
                     <span class="assists">${activeSummoner.score.assists}</span>
                 </div>
                 <span class="kda">${activeSummoner.score.kda} KDA</span>
+                <div class="itemlist">
+                  <ul>`
+                    for(var item of activeSummoner.items){
+                      if(item !== 0){
+                        card_result += `<li>
+                        <div class="item"><img src="http://ddragon.leagueoflegends.com/cdn/13.7.1/img/item/${item}.png"
+                                alt="" class="itemimg"></div>
+                        </li>`
+                      }
+                      else{
+                        card_result += `<li>
+                        <div class="item"></div>
+                        </li>`
+                      }
+                    }
+                  card_result += `</ul>
+                </div>
             </div>
             <div class="match-summary">
               <div class="summoner-line-ups"><ul>`;

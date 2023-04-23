@@ -24,7 +24,8 @@ export const queueTypes={
     700:"Summoner's Rift Clash game",
     830:"Intro Tutorial",
     840:"Beginner Co-op",
-    850:"Intermediate Co-op"
+    850:"Intermediate Co-op",
+    1400:"Ultimate Spellbook"
 }
 export const config = {
     api:{

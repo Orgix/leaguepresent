@@ -359,7 +359,13 @@ body > h1{
   top:7px;
 }
 .item{
+  margin:0 1px 0 1px;
   padding:1px;
+  width:22px;
+  height:22px;
+  background-color: #313;
+  border-radius: 4px;
+
 }
 @media(width < 1100px){
   .summoner-line-ups > ul {
