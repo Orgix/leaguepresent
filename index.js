@@ -50,7 +50,8 @@ app.get('/summoner/:Region/:SummonerName', async(request, response)=>{
       name: fetchResponse.name,
       profileIcon: fetchResponse.profileIconId,
       level: fetchResponse.summonerLevel,
-      server: REGION
+      server: REGION,
+      patch: config.patch
     }
       
     //--------------------
@@ -130,7 +131,7 @@ app.get('/matches/:Region/:puuid', async (request, response) =>{
 })
 const createPartObj = (entries) =>{
   return entries.map((entry)=>{
-    return ({win : entry.win, team: entry.teamId,name: entry.summonerName, champion: entry.championName,
+    return ({spell1:config.spellsMappings[entry.summoner1Id],spell2:config.spellsMappings[entry.summoner2Id],win : entry.win, team: entry.teamId,name: entry.summonerName, champion: entry.championName,
     cs:entry.totalMinionsKilled,kills: entry.kills, deaths: entry.deaths, assists: entry.assists, kda: determineKDA(entry.kills,entry.deaths,entry.assists),
     items:[entry.item0,entry.item1,entry.item2,entry.item3,entry.item4,entry.item5,entry.item6]
   })
@@ -148,9 +149,9 @@ const determineKDA = (kills,deaths,assists) =>{
     return parseFloat(((kills+assists)/deaths).toFixed(2))
   }
 }
-//many summoners have multiple rankings in multiple queues, fix the UI to have all 3 of them presented
+//many summoners have multiple rankings in multiple queues, fix the UI to have both presented (DONE)
 // add parameters to the start/end on the match url. e.g. load first 10 games, load the next 10 with the press of a button
-//fetch summoners spells used, items before returning the object
+//fetch summoners spells used, items before returning the object (ITEMS DONE)
 //add a method that will be taking the image name for each champion inside the match object in order to use the path at Ddragon
 //after testing some edge cases, another change to happen is to make sure that user knows if an associated account has no games(presented)
-//separate js code in front
+//separate js code in front (DONE)

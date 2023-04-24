@@ -57,7 +57,7 @@ function createSummonerCard(summonerData) {
       <div class="summoner-card">
         <h2 class="summoner-name">${summonerData.name}</h2>
         <div class="summoner">
-              <img src="http://ddragon.leagueoflegends.com/cdn/13.7.1/img/profileicon/${summonerData.profileIcon}.png" alt="${summonerData.name}" class="profile-icon">
+              <img src="http://ddragon.leagueoflegends.com/cdn/${summonerData.patch}/img/profileicon/${summonerData.profileIcon}.png" alt="${summonerData.name}" class="profile-icon">
               <div class="summoner-level"><span>${summonerData.level}</span></div>
         </div>
         <div class="rank-info-row">`;
@@ -195,11 +195,12 @@ function createSummonerCard(summonerData) {
       started: formatDateTime(new Date(details.time.started + details.time.lasted * 1000))
     };
     //get activeSummonerName
-    const activeSummoner ={name:data.name};
+    const activeSummoner ={name:data.name, patch: data.patch};
     const summoners = details.summoners;
     for(var summoner of summoners){
       //when you find active summoner, keep info.
       if(summoner.name === activeSummoner.name){
+        console.log(summoner)
        activeSummoner["champion"] = summoner.champion;
        activeSummoner["won"] = summoner.win;
        activeSummoner["score"] = {
@@ -244,7 +245,7 @@ function createSummonerCard(summonerData) {
                     for(var item of activeSummoner.items){
                       if(item !== 0){
                         card_result += `<li>
-                        <div class="item"><img src="http://ddragon.leagueoflegends.com/cdn/13.7.1/img/item/${item}.png"
+                        <div class="item"><img src="http://ddragon.leagueoflegends.com/cdn/${activeSummoner.patch}/img/item/${item}.png"
                                 alt="" class="itemimg"></div>
                         </li>`
                       }
