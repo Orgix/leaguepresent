@@ -200,7 +200,6 @@ function createSummonerCard(summonerData) {
     for(var summoner of summoners){
       //when you find active summoner, keep info.
       if(summoner.name === activeSummoner.name){
-        console.log(summoner)
        activeSummoner["champion"] = summoner.champion;
        activeSummoner["won"] = summoner.win;
        activeSummoner["score"] = {
@@ -210,6 +209,7 @@ function createSummonerCard(summonerData) {
         kda: summoner.kda
        }
        activeSummoner["items"] = summoner.items;
+       activeSummoner["spells"] = summoner.spells;
        //in case summoner is found before the end of for loop, break;
        break;
       }
