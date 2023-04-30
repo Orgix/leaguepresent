@@ -1,11 +1,13 @@
 import express from 'express'; 
-import fetch from 'node-fetch';
+import dotenv from 'dotenv';
 import { config, queueTypes } from './api/config.js';
 import { makeApiCall,getChampionName} from './api/helpers.js';
+import yargs from 'yargs';
 
-
+dotenv.config()
+console.log(yargs(process.argv.slice(2)).argv._)
 const app = express();
-const port = 3000;
+const port = process.env.PORT;
 const API_KEY = config.api.key;
 const status = {
   message:"",

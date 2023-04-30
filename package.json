@@ -10,7 +10,8 @@
   "version": "1.0.0",
   "main": "index.js",
   "devDependencies": {
-    "nodemon": "^2.0.22"
+    "nodemon": "^2.0.22",
+    "yargs": "^17.7.2"
   },
   "scripts": {
     "dev": "nodemon index.js"
