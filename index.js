@@ -3,9 +3,10 @@ import dotenv from 'dotenv';
 import { config, queueTypes } from './api/config.js';
 import { makeApiCall,getChampionName} from './api/helpers.js';
 import yargs from 'yargs';
-
+import open from 'open';
 dotenv.config()
 console.log(yargs(process.argv.slice(2)).argv._)
+
 const app = express();
 const port = process.env.PORT;
 const API_KEY = config.api.key;
@@ -19,7 +20,8 @@ const status = {
 app.use(express.static('public'));
 
 app.listen(port, () => {
-  console.log(`Example app listening on port ${port}`)
+  console.log(`Transfering to app:  http://localhost:${port}`)
+  open(`http://localhost:${port}`,(err)=>console.error(err))
 })
 
 app.get('/summoner/:Region/:SummonerName', async(request, response)=>{
