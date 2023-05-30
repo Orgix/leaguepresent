@@ -159,4 +159,5 @@ const determineKDA = (kills,deaths,assists) =>{
 //add a method that will be taking the image name for each champion inside the match object in order to use the path at Ddragon
 //after testing some edge cases, another change to happen is to make sure that user knows if an associated account has no games(presented)
 //separate js code in front (DONE)
-//change match card so it can fit active Summoner's spells
+//change match card so it can fit active Summoner's spells/
+//SPLIT ROUTES
